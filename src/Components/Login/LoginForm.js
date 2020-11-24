@@ -1,23 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Input from '../Forms/Input';
-import Button from '../Forms/Button';
-import useForm from '../../Hooks/useForm';
-import { UserContext } from '../../UserContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import Input from "../Forms/Input";
+import Button from "../Forms/Button";
+import useForm from "../../Hooks/useForm";
+import { UserContext } from "../../UserContext";
 
 const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  const { userLogin } = React.useContext(UserContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (username.validade() && password.validade()) {
-      userLogin(username.value, password.value)
+      userLogin(username.value, password.value);
     }
-  }
+  };
 
   return (
     <section>
@@ -25,11 +25,16 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <Input label="Usuario" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
-        <Button>Entrar</Button>
+        {loading ? (
+          <Button disabled>Carregando...</Button>
+        ) : (
+          <Button>Entrar</Button>
+        )}
+        {error && <p>{error}</p>}
       </form>
       <Link to="/login/criar">Cadastro</Link>
     </section>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
