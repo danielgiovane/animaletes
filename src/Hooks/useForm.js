@@ -1,21 +1,24 @@
-import React from 'react'
-
-
+import React from "react";
 const types = {
   email: {
-    regex: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    message: 'Preencha um email valido'
-  }
-}
+    regex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: "Preencha um email valido",
+  },
+  password: {
+    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+    message:
+      "A senha precisa ter 1 Numero, 1 letra minuscula, 1 letra Maiscula e no minimo 8 caracteres",
+  },
+};
 
 const useForm = (type) => {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
   const [error, setError] = React.useState(null);
 
   const onChange = ({ target }) => {
     if (error) validade(target.value);
     setValue(target.value);
-  }
+  };
 
   const validade = (value) => {
     if (type === false) return true;
@@ -29,7 +32,7 @@ const useForm = (type) => {
       setError(null);
       return true;
     }
-  }
+  };
 
   return {
     value,
@@ -37,8 +40,8 @@ const useForm = (type) => {
     onChange,
     error,
     validade: () => validade(value),
-    onBlur: () => validade(value)
-  }
-}
+    onBlur: () => validade(value),
+  };
+};
 
-export default useForm
+export default useForm;
