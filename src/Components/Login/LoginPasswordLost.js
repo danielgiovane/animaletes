@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const LoginPasswordLost = () => {
   return (
-    <div>
-      Perdeu
-    </div>
-  )
-}
+    <section className="animeLeft">
+      <h1 className="title">Perdeu a Senha</h1>
+    </section>
+  );
+};
 
-export default LoginPasswordLost
+export default LoginPasswordLost;
