@@ -49,3 +49,26 @@ export const USER_POST = (body) => {
     },
   };
 };
+
+export const PHOTO_POST = (formData, token) => {
+  return {
+    url: api + "/api/photo",
+    options: {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: formData,
+    },
+  };
+};
+
+export const PHOTOS_GET = ({ page, total, usuario }) => {
+  return {
+    url: `${api}/api/photo/?_page=${page}&_total=${total}&_user=${usuario}`,
+    options: {
+      method: "GET",
+      cache: "no-store",
+    },
+  };
+};
