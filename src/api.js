@@ -72,3 +72,13 @@ export const PHOTOS_GET = ({ page, total, usuario }) => {
     },
   };
 };
+
+export const PHOTO_GET = (id) => {
+  return {
+    url: `${api}/api/photo/${id}`,
+    options: {
+      method: "GET",
+      cache: "no-store",
+    },
+  };
+};
